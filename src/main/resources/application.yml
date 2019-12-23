@@ -1,0 +1,45 @@
+server:
+  port: 8449
+  error.whitelabel.enabled: false
+spring:
+  profiles:
+    active: local
+  jpa.hibernate.ddl-auto: create
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:3306/skeleton
+    username: skeleton_user
+    password: P@ssword123
+  flyway:
+    enabled: false
+    locations: classpath:db/migration,classpath:dev/db/migration
+    table: flyway_schema_history
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    baseline-on-migrate: true
+
+management:
+  security:
+    enabled: false
+
+info:
+  build:
+    artifact: @project.artifactId@
+    name: @project.name@
+    description: @project.description@
+    version: @project.version@-@rpm.release@
+  contact:
+    domain: Wizeline Spring Boot Skeleton
+    team: Rocket1h
+
+app:
+  github-client-service:
+    read-timeout-ms: 10000
+    connect-timeout: 10000
+    default-max-per-route: 40
+    max-total: 40
+    socket-timeout: 60000
+    keep-alive-header: 30
+    endpoints:
+      v3: 'https://api.github.com/v3'
+      v2: 'https://api.github.com/v2'

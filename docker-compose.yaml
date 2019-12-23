@@ -1,0 +1,12 @@
+version: "3"
+services:
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=skeleton
+      - MYSQL_USER=skeleton_user
+      - MYSQL_PASSWORD=P@ssword123
+    ports:
+      - "3306:3306"
