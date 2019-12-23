@@ -11,7 +11,8 @@ public class JsonUtil {
   private static final Logger LOGGER = LoggerFactory.getLogger(JsonUtil.class);
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-  private JsonUtil() {}
+  private JsonUtil() {
+  }
 
   public static String stringify(Object object) {
     try {

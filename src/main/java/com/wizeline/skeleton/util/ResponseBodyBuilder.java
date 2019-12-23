@@ -7,7 +7,8 @@ import com.wizeline.skeleton.dto.ErrorResponse;
 
 public class ResponseBodyBuilder {
 
-  private ResponseBodyBuilder() {}
+  private ResponseBodyBuilder() {
+  }
 
   public static ErrorResponse unexpectedError() {
     return new ErrorResponse(UNEXPECTED_ERROR);

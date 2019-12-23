@@ -14,7 +14,8 @@ public class GenericResponse<T> {
   private String message;
   private T data;
 
-  public GenericResponse() {}
+  public GenericResponse() {
+  }
 
   public GenericResponse(ResponseCode responseCode, T data) {
     this.code = responseCode.getCode();

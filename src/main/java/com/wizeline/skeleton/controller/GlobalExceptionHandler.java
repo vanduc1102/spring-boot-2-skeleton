@@ -26,6 +26,7 @@ import springfox.documentation.annotations.ApiIgnore;
 @RestController
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
   private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
   @ExceptionHandler(BusinessException.class)

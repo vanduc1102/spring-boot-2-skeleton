@@ -1,7 +1,7 @@
 package com.wizeline.skeleton.exception;
 
-import static com.wizeline.skeleton.constant.ResponseCode.SERVICE_UNAVAILABLE;
 import static com.wizeline.skeleton.constant.ResponseCode.REQUEST_TIMEOUT;
+import static com.wizeline.skeleton.constant.ResponseCode.SERVICE_UNAVAILABLE;
 import static org.springframework.http.HttpStatus.Series.CLIENT_ERROR;
 import static org.springframework.http.HttpStatus.Series.SERVER_ERROR;
 

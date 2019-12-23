@@ -1,6 +1,5 @@
 package com.wizeline.skeleton.configuration;
 
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "app")
 public class AppProperties {
+
   private final GithubClientService githubClientService = new GithubClientService();
 
   @Getter
@@ -28,5 +28,7 @@ public class AppProperties {
 
   @Getter
   @Setter
-  public static class GithubClientService extends ConfigClient {}
+  public static class GithubClientService extends ConfigClient {
+
+  }
 }

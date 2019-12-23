@@ -12,6 +12,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "account")
 public class AccountEntity extends BaseEntity {
+
   private String status;
   private String username;
   private String firstname;

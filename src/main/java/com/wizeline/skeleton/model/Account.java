@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Account {
+
   private Long id;
   private String status;
   private String username;

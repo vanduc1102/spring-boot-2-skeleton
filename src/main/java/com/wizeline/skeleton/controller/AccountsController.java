@@ -29,8 +29,11 @@ public class AccountsController {
   }
 
   @ResponseBody
-  @GetMapping(value = "/github/")
+  @GetMapping(value = "/github/{username}")
   public GenericResponse<String> getGithubAccount(@PathVariable("username") String username) {
-    return new GenericResponse<>(ResponseCode.SUCCESS,"");
+    return new GenericResponse<>(
+        ResponseCode.SUCCESS,
+        githubRestTemplate.getForObject("/users/".concat(username), String.class)
+    );
   }
 }

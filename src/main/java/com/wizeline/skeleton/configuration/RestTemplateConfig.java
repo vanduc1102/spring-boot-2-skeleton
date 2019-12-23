@@ -28,13 +28,13 @@ import org.apache.http.ssl.SSLContexts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 @Configuration
 public class RestTemplateConfig {
@@ -42,10 +42,11 @@ public class RestTemplateConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(RestTemplateConfig.class);
   private static final int THIRTY_SECONDS = 30 * 1000;
 
-  @Autowired private AppProperties appProperties;
+  @Autowired
+  private AppProperties appProperties;
 
-  @Bean(name = "githubRestTemplate")
   @Primary
+  @Bean(name = "githubRestTemplate")
   public RestTemplate githubClientService()
       throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
     val restTemplate =
@@ -84,7 +85,7 @@ public class RestTemplateConfig {
   }
 
   private RestTemplate makeRestTemplate(
-      final String rootEndpoint,
+      final String endpoint,
       final int maxTotal,
       final int maxPerRoute,
       final int connectionTimeout,
@@ -115,14 +116,11 @@ public class RestTemplateConfig {
 
     val clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(closeableHttpClient);
 
-    val restTemplateBuilder = new RestTemplateBuilder();
-
-    restTemplateBuilder
-        .requestFactory(clientHttpRequestFactory)
-        .interceptors(getInterceptors())
-        .rootUri(rootEndpoint);
-
-    return restTemplateBuilder.build();
+    val restTemplate = new RestTemplate();
+    restTemplate.setRequestFactory(clientHttpRequestFactory);
+    restTemplate.setInterceptors(getInterceptors());
+    restTemplate.setUriTemplateHandler(new DefaultUriBuilderFactory(endpoint));
+    return restTemplate;
   }
 
   private PoolingHttpClientConnectionManager poolingHttpClientConnectionManager(
