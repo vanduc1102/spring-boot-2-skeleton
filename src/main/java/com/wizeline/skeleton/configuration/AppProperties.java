@@ -23,7 +23,7 @@ public class AppProperties {
     private int socketTimeout;
     private int readTimeoutMs;
     private int keepAliveHeader;
-    private Map<String, String> endpoints;
+    private String endpoint;
   }
 
   @Getter

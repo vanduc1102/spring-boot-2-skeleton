@@ -40,6 +40,4 @@ app:
     max-total: 40
     socket-timeout: 60000
     keep-alive-header: 30
-    endpoints:
-      v3: 'https://api.github.com/v3'
-      v2: 'https://api.github.com/v2'
+    endpoint: 'https://api.github.com'

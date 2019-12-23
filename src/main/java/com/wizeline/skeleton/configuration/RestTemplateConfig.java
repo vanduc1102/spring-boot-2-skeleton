@@ -28,6 +28,7 @@ import org.apache.http.ssl.SSLContexts;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -49,6 +50,7 @@ public class RestTemplateConfig {
       throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
     val restTemplate =
         makeRestTemplate(
+            appProperties.getGithubClientService().getEndpoint(),
             appProperties.getGithubClientService().getMaxTotal(),
             appProperties.getGithubClientService().getDefaultMaxPerRoute(),
             appProperties.getGithubClientService().getConnectTimeout(),
@@ -82,6 +84,7 @@ public class RestTemplateConfig {
   }
 
   private RestTemplate makeRestTemplate(
+      final String rootEndpoint,
       final int maxTotal,
       final int maxPerRoute,
       final int connectionTimeout,
@@ -112,10 +115,14 @@ public class RestTemplateConfig {
 
     val clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(closeableHttpClient);
 
-    val restTemplate = new RestTemplate();
-    restTemplate.setRequestFactory(clientHttpRequestFactory);
-    restTemplate.setInterceptors(getInterceptors());
-    return restTemplate;
+    val restTemplateBuilder = new RestTemplateBuilder();
+
+    restTemplateBuilder
+        .requestFactory(clientHttpRequestFactory)
+        .interceptors(getInterceptors())
+        .rootUri(rootEndpoint);
+
+    return restTemplateBuilder.build();
   }
 
   private PoolingHttpClientConnectionManager poolingHttpClientConnectionManager(

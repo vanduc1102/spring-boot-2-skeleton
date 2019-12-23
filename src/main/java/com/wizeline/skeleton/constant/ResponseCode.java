@@ -2,6 +2,7 @@ package com.wizeline.skeleton.constant;
 
 public enum ResponseCode {
   SUCCESS("200-000", "Success."),
+  INVALID_ARGUMENT("400-000", "Invalid arguments"),
   UNEXPECTED_ERROR("500-000", "Unexpected error."),
   REQUEST_TIMEOUT("408-001", "Request timeout."),
   SERVICE_UNAVAILABLE("503-004", "Service is unavailable."),
