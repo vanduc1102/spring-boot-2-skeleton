@@ -1,4 +1,4 @@
-# acm-skeleton
+# wizeline-skeleton
 
 ## Setup
 1. Java JDK 1.8
