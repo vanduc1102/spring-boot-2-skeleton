@@ -6,7 +6,7 @@ import static org.springframework.http.HttpStatus.Series.CLIENT_ERROR;
 import static org.springframework.http.HttpStatus.Series.SERVER_ERROR;
 
 import com.wizeline.skeleton.constant.Namespace;
-import com.wizeline.skeleton.dto.ErrorResponse;
+import com.wizeline.skeleton.dto.response.ErrorResponse;
 import com.wizeline.skeleton.util.JsonUtil;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

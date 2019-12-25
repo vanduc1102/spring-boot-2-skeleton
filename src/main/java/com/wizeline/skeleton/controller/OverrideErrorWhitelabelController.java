@@ -1,6 +1,6 @@
 package com.wizeline.skeleton.controller;
 
-import com.wizeline.skeleton.dto.GenericResponse;
+import com.wizeline.skeleton.dto.response.GenericResponse;
 import com.wizeline.skeleton.util.ResponseBodyBuilder;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

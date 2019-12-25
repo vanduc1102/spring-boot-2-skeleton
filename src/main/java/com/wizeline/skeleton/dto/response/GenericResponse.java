@@ -1,4 +1,4 @@
-package com.wizeline.skeleton.dto;
+package com.wizeline.skeleton.dto.response;
 
 import com.wizeline.skeleton.constant.Namespace;
 import com.wizeline.skeleton.constant.ResponseCode;
@@ -14,8 +14,7 @@ public class GenericResponse<T> {
   private String message;
   private T data;
 
-  public GenericResponse() {
-  }
+  public GenericResponse() {}
 
   public GenericResponse(ResponseCode responseCode, T data) {
     this.code = responseCode.getCode();

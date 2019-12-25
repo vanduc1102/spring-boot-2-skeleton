@@ -2,7 +2,7 @@ package com.wizeline.skeleton.exception;
 
 import com.wizeline.skeleton.constant.Namespace;
 import com.wizeline.skeleton.constant.ResponseCode;
-import com.wizeline.skeleton.dto.ErrorResponse;
+import com.wizeline.skeleton.dto.response.ErrorResponse;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;

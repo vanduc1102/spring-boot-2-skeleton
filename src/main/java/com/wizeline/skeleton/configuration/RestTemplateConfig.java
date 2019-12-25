@@ -42,8 +42,7 @@ public class RestTemplateConfig {
   private static final Logger LOGGER = LoggerFactory.getLogger(RestTemplateConfig.class);
   private static final int THIRTY_SECONDS = 30 * 1000;
 
-  @Autowired
-  private AppProperties appProperties;
+  @Autowired private AppProperties appProperties;
 
   @Primary
   @Bean(name = "githubRestTemplate")
@@ -92,6 +91,7 @@ public class RestTemplateConfig {
       final int socketTimeout,
       final int keepAliveHeader)
       throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    LOGGER.debug("Endpoint : {}", endpoint);
     LOGGER.debug("MaxTotal : {}", maxTotal);
     LOGGER.debug("DefaultMaxPerRoute : {}", maxPerRoute);
     LOGGER.debug("ConnectTimeout : {}", connectionTimeout);

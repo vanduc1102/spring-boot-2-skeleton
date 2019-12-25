@@ -28,7 +28,5 @@ public class AppProperties {
 
   @Getter
   @Setter
-  public static class GithubClientService extends ConfigClient {
-
-  }
+  public static class GithubClientService extends ConfigClient {}
 }

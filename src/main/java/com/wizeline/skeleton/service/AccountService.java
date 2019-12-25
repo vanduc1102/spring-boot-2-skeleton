@@ -5,6 +5,9 @@ import java.util.List;
 
 public interface AccountService {
 
-  List<AccountDto> getAll();
+  AccountDto save(AccountDto account);
 
+  AccountDto getOne(Long id);
+
+  List<AccountDto> findAll();
 }

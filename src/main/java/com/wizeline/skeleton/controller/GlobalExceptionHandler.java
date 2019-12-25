@@ -2,8 +2,8 @@ package com.wizeline.skeleton.controller;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.wizeline.skeleton.constant.ResponseCode;
-import com.wizeline.skeleton.dto.ErrorResponse;
-import com.wizeline.skeleton.dto.GenericResponse;
+import com.wizeline.skeleton.dto.response.ErrorResponse;
+import com.wizeline.skeleton.dto.response.GenericResponse;
 import com.wizeline.skeleton.exception.BusinessException;
 import com.wizeline.skeleton.util.ResponseBodyBuilder;
 import java.util.List;
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(BusinessException.class)
   public <E extends BusinessException>
-  ResponseEntity<GenericResponse> handleECatalogException(E ex) {
+      ResponseEntity<GenericResponse<String>> handleECatalogException(E ex) {
     val commonResponse =
         new ErrorResponse(ex.getNamespace(), ex.getResponseCode(), ex.getResponseMessage());
     return ResponseEntity.status(ex.getHttpStatus()).body(commonResponse);
@@ -39,7 +39,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public GenericResponse handleArgumentNotValid(MethodArgumentNotValidException ex) {
+  public GenericResponse<String> handleArgumentNotValid(MethodArgumentNotValidException ex) {
     List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
     String errorMessage = null;
     String errorCode = null;
@@ -59,10 +59,9 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(HttpMessageNotReadableException.class)
   @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public GenericResponse handleArgumentNotValid(HttpMessageNotReadableException ex) {
+  public GenericResponse<String> handleArgumentNotValid(HttpMessageNotReadableException ex) {
     if (ex.getCause() instanceof InvalidFormatException) {
-      return new ErrorResponse(
-          ResponseCode.INVALID_ARGUMENT.getCode(), ex.getMessage());
+      return new ErrorResponse(ResponseCode.INVALID_ARGUMENT.getCode(), ex.getMessage());
     } else {
       LOGGER.error(ex.getMessage(), ex);
       throw ex;
@@ -71,7 +70,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-  protected GenericResponse handleUnexpectedError(Exception ex) {
+  protected GenericResponse<String> handleUnexpectedError(Exception ex) {
     LOGGER.error("handleUnexpectedError: " + ex.getMessage(), ex);
     return ResponseBodyBuilder.unexpectedError();
   }
