@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class AppFlywayMigrationStrategy implements FlywayMigrationStrategy {
+public class MigrationStrategy implements FlywayMigrationStrategy {
 
-  private static Logger LOGGER = LoggerFactory.getLogger(AppFlywayMigrationStrategy.class);
+  private static Logger LOGGER = LoggerFactory.getLogger(MigrationStrategy.class);
 
   @Override
   public void migrate(Flyway flyway) {
