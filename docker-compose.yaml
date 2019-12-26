@@ -2,7 +2,7 @@ version: "3"
 services:
   db:
     image: mysql:8
-    restart: always
+    restart: "no"
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=skeleton

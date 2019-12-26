@@ -4,14 +4,18 @@ server:
 spring:
   profiles:
     active: local
-  jpa.hibernate.ddl-auto: create
+  jpa:
+    hibernate.ddl-auto: 'validate'
+    dialect: 'org.hibernate.dialect.MySQL5Dialect'
+    properties.hibernate.dialect: 'org.hibernate.dialect.MySQL5Dialect'
+    open-in-view: 'true'
   datasource:
     url: jdbc:mysql://${DATABASE_HOST:localhost}:3306/skeleton
     username: skeleton_user
     password: P@ssword123
   flyway:
-    enabled: false
-    locations: classpath:db/migration,classpath:dev/db/migration
+    enabled: true
+    locations: classpath:db/migration
     table: flyway_schema_history
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
