@@ -18,15 +18,15 @@ public class AccountDto {
   private Long id;
   private String status;
 
-  @NotNull(message = "Username cannot be null")
+  @NotNull(message = "409|Username cannot be null")
   private String username;
 
-  @NotNull(message = "First name cannot be null")
+  @NotNull(message = "410|First name cannot be null")
   private String firstname;
 
-  @NotNull(message = "Last name cannot be null")
+  @NotNull(message = "411|Last name cannot be null")
   private String lastname;
 
-  @Email(message = "Email should be valid")
+  @Email(message = "412|Email should be valid")
   private String email;
 }
