@@ -20,7 +20,7 @@ FROM openjdk:8-jre-alpine
 WORKDIR /workspace
 
 # copy over the built artifact from the maven image
-COPY --from=maven target/testing-framework-be*.jar ./app.jar
+COPY --from=maven target/skeleton*.jar ./app.jar
 COPY --from=maven src/main/resources/* ./
 
 EXPOSE 8080
