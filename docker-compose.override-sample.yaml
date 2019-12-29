@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  skeleton-be:
+    restart: no
+    entrypoint: ["echo", "SpringBoot App is disabled, use ./mvnw spring-boot:run to start"]
+
+  db:
+    restart: no
+    ports:
+      - "3306:3306"
