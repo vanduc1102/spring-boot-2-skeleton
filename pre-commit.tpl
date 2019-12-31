@@ -4,12 +4,12 @@
 echo "####################################################################"
 echo "##### Running ./mvnw fmt:check to check for Google Java Format #####"
 echo "####################################################################"
-./mvnw fmt:check
+./mvnw fmt:check || exit 1
 
 
 echo "####################################################################"
 echo "##### Running ./mvnw test to run test-case #####"
 echo "####################################################################"
-./mvnw test
+./mvnw clean test || exit 1
 
 #TODO nicer output
