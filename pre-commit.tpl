@@ -2,14 +2,8 @@
 # Install: cp pre-commit.tpl .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 
 echo "####################################################################"
-echo "##### Running ./mvnw fmt:check to check for Google Java Format #####"
+echo "##### Running ./mvnw clean verify #####"
 echo "####################################################################"
-./mvnw fmt:check || exit 1
-
-
-echo "####################################################################"
-echo "##### Running ./mvnw test to run test-case #####"
-echo "####################################################################"
-./mvnw clean test || exit 1
+./mvnw clean verify || exit 1
 
 #TODO nicer output
